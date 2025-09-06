@@ -59,9 +59,6 @@ from sklearn.metrics import accuracy_score
 
 """**Reading informations in the Dataset**"""
 
-from google.colab import drive
-drive.mount('/content/drive')
-
 spam = pd.read_csv("/content/spam.csv", encoding='latin-1')
 
 """**Checking for null values in Data**"""
