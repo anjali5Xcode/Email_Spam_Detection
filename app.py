@@ -8,7 +8,7 @@ from nltk.stem.porter import PorterStemmer
 # --- 1. Load the saved model and vectorizer ---
 # Make sure you have saved both files from your training script
 try:
-    with open('MNB_model.pkl', 'rb') as model_file:
+    with open('MNB.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
     with open('vectorizer.pkl', 'rb') as vectorizer_file:
         cv = pickle.load(vectorizer_file)
