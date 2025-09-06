@@ -1,20 +1,12 @@
+%%writefile app.py
 import streamlit as st
 import pickle
 import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-import os
 
-# --- 1. Ensure NLTK data is downloaded ---
-# This will catch the error and attempt to download again
-try:
-    if not os.path.exists(nltk.data.find('corpora/stopwords')):
-        nltk.download('stopwords')
-except LookupError:
-    nltk.download('stopwords')
-
-# --- 2. Load the saved model and vectorizer ---
+# Load the saved model and vectorizer
 # Make sure you have saved both files from your training script
 try:
     with open('MNB.pkl', 'rb') as model_file:
@@ -22,15 +14,17 @@ try:
     with open('vectorizer.pkl', 'rb') as vectorizer_file:
         cv = pickle.load(vectorizer_file)
 except FileNotFoundError:
-    st.error("Error: Model or vectorizer file not found. Please ensure 'MNB_model.pkl' and 'vectorizer.pkl' exist.")
+    st.error("Error: Model or vectorizer file not found. Please ensure 'MNB.pkl' and 'vectorizer.pkl' exist.")
     st.stop()
 
-# --- 3. Initialize the stemmer and stopwords for preprocessing ---
+
+# Initialize the stemmer and stopwords
 ps = PorterStemmer()
+nltk.download('stopwords')
 all_stopwords = stopwords.words('english')
 all_stopwords.remove('not') # Keep 'not' for accurate sentiment analysis
 
-# --- 4. Define the preprocessing function ---
+# Function to preprocess the text
 def preprocess_text(text):
     review = re.sub('[^a-zA-Z]', ' ', text)
     review = review.lower()
@@ -39,7 +33,7 @@ def preprocess_text(text):
     review = ' '.join(review)
     return review
 
-# --- 5. Set up the Streamlit app layout and styling ---
+# Set up the Streamlit app
 st.set_page_config(page_title="Email Spam Detector", layout="centered")
 
 st.markdown(
@@ -105,24 +99,26 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
 st.markdown('<h1 class="main-header">✉️ Email Spam Detector</h1>', unsafe_allow_html=True)
 st.markdown("Enter an email message below to see if it's spam or not.", unsafe_allow_html=True)
 
-# --- 6. Create a text area for user input and a button for prediction ---
+# Create a text area for user input
 input_mail = st.text_area("Enter the email message:", height=200, help="Paste the full email content here.")
 
+# Add a button to trigger the prediction
 if st.button("Predict"):
     if input_mail:
-        # Preprocess the input text
+        # 1. Preprocess the input text
         preprocessed_text = preprocess_text(input_mail)
 
-        # Transform the preprocessed text using the loaded CountVectorizer
+        # 2. Transform the preprocessed text using the loaded CountVectorizer
         input_data_features = cv.transform([preprocessed_text])
 
-        # Make a prediction
+        # 3. Make a prediction
         prediction = model.predict(input_data_features)
 
-        # Display the prediction result
+        # 4. Display the prediction result
         st.subheader("Prediction Result:")
         if prediction[0] == 1:
             st.error("This is a SPAM Mail!")
