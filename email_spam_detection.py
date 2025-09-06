@@ -32,7 +32,7 @@ for i in range(0, len(data)):
     corpus.append(review)
 
 # --- 3. Creating the Bag of Words model ---
-cv = CountVectorizer(max_features=4000)
+cv = CountVectorizer(max_features=4000) # Ensure this matches the original max_features
 X = cv.fit_transform(corpus).toarray()
 y = data.iloc[:, 0].values
 y = pd.get_dummies(y)
@@ -61,4 +61,4 @@ with open('MNB.pkl', 'wb') as model_file:
 with open('vectorizer.pkl', 'wb') as vectorizer_file:
     pickle.dump(cv, vectorizer_file)
 
-print("\nTraining complete. Model and vectorizer saved as 'MNB_model.pkl' and 'vectorizer.pkl'.")
+print("\nTraining complete. Model and vectorizer saved as 'MNB.pkl' and 'vectorizer.pkl'.")
