@@ -10,11 +10,10 @@ from sklearn.metrics import confusion_matrix, accuracy_score, classification_rep
 import pickle
 
 # --- 1. Load the Dataset ---
-# Assuming you have a CSV file named 'spam_mail.csv'
 try:
-    data = pd.read_csv('spam_mail.csv', encoding='latin-1')
+    data = pd.read_csv('spam.csv', encoding='latin-1')
 except FileNotFoundError:
-    print("Error: The file 'spam_mail.csv' was not found.")
+    print("Error: The file 'spam.csv' was not found.")
     exit()
 
 # --- 2. Preprocessing the Dataset ---
