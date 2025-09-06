@@ -32,7 +32,7 @@ for i in range(0, len(data)):
     corpus.append(review)
 
 # --- 3. Creating the Bag of Words model ---
-cv = CountVectorizer(max_features=1500)
+cv = CountVectorizer(max_features=4000)
 X = cv.fit_transform(corpus).toarray()
 y = data.iloc[:, 0].values
 y = pd.get_dummies(y)
