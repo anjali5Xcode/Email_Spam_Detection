@@ -1,13 +1,14 @@
 ✉️ Email Spam Detection with Machine Learning
 
 This project is a machine learning-based application for classifying emails as "spam" or "ham" (not spam). The application is built with Streamlit, providing a simple and interactive web interface where users can paste an email message and get an instant prediction.
-
 The core of the project relies on a Multinomial Naive Bayes classifier trained on a large dataset of email messages. The text data is preprocessed and converted into a numerical format using the Bag of Words model before being fed to the machine learning model.
+
 
 🌐 Live Application
 
 You can try the live application here:
 https://emailspamdetection-kgrawlwnq7fxtefmnde4vp.streamlit.app/#prediction-result
+
 
 ✨ Features
 
@@ -18,6 +19,7 @@ Machine Learning Powered: Utilizes a trained Naive Bayes classifier for accuracy
 Intuitive UI: A clean and user-friendly interface built with Streamlit.
 
 Data Preprocessing: Includes steps for cleaning and vectorizing raw text data.
+
 
 ⚙️ How It Works
 
@@ -32,8 +34,8 @@ Model Training: A MultinomialNB model is trained on this numerical data to learn
 
 Persistence: The trained model (MNB_model.pkl) and the CountVectorizer (vectorizer.pkl) are saved to disk.
 
-Application Logic
 
+Application Logic
 The Streamlit application (app.py) performs the following steps in a continuous loop:
 
 Loads the pre-trained model and vectorizer from the .pkl files.
@@ -47,6 +49,7 @@ Transforms the preprocessed text into a numerical vector using the loaded CountV
 Passes this vector to the MultinomialNB model for prediction.
 
 Displays the result ("SPAM" or "HAM") to the user.
+
 
 🚀 Getting Started
 To set up and run this project locally, follow these steps.
@@ -67,6 +70,7 @@ Clone the repository to your local machine (if applicable), then install the req
 
 pip install streamlit scikit-learn pandas nltk
 
+
 Project Structure
 
 email_spam_detection.py: The script used for training the machine learning model and saving the .pkl files.
@@ -79,6 +83,7 @@ MNB_model.pkl: The trained machine learning model.
 
 vectorizer.pkl: The fitted vectorizer object.
 
+
 Running the Application
 Train the Model: First, run the training script to generate the model and vectorizer files.
 
@@ -89,6 +94,7 @@ Run the App: Once the .pkl files have been created, run the Streamlit applicatio
 streamlit run app.py
 
 This will launch the web application in your default browser.
+
 
 🤝 Contribution
 Feel free to open an issue or submit a pull request if you have suggestions for improvements.
