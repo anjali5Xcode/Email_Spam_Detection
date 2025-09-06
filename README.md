@@ -85,8 +85,11 @@ vectorizer.pkl: The fitted vectorizer object.
 
 
 Running the Application
+
 Train the Model: First, run the training script to generate the model and vectorizer files.
+
 python email_spam_detection.py
+
 Run the App: Once the .pkl files have been created, run the Streamlit application.
 
 streamlit run app.py
