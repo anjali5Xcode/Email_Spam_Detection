@@ -234,7 +234,7 @@ Install the Streamlit library in your Colab environment.
 Install the streamlit library using pip.
 """
 
-!pip install streamlit
+#!pip install streamlit
 
 """## Create a streamlit app file
 
