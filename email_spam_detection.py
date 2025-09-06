@@ -55,7 +55,7 @@ print("Classification Report:")
 print(classification_report(y_test, y_pred))
 
 # --- 7. Saving the model and vectorizer to disk ---
-with open('MNB_model.pkl', 'wb') as model_file:
+with open('MNB.pkl', 'wb') as model_file:
     pickle.dump(classifier, model_file)
 
 with open('vectorizer.pkl', 'wb') as vectorizer_file:
