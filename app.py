@@ -7,12 +7,11 @@ from nltk.stem.porter import PorterStemmer
 import os
 
 # --- 1. Ensure NLTK data is downloaded ---
-# This is a more robust way to handle the download in different environments
+# This will catch the error and attempt to download again
 try:
     if not os.path.exists(nltk.data.find('corpora/stopwords')):
         nltk.download('stopwords')
-except (nltk.downloader.DownloadError, LookupError):
-    # Fallback if the path check fails for some reason
+except LookupError:
     nltk.download('stopwords')
 
 # --- 2. Load the saved model and vectorizer ---
